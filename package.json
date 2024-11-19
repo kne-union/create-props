@@ -1,7 +1,7 @@
 {
   "name": "@kne/create-props",
   "version": "0.1.0",
-  "description": "验证并格式化props",
+  "description": "验证并格式化props.",
   "syntax": {
     "esmodules": true
   },
