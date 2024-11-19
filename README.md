@@ -36,9 +36,9 @@ npm i --save @kne/create-props
 const { default: createProps } = _CreateProps;
 
 const propTypes = createProps((z) => {
-  return {
+  return [{
     name: z.string().default('name'), age: z.number().default(10), description: z.string().default('description')
-  };
+  }];
 }, '示例组件');
 
 const BaseExample = (p) => {

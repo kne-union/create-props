@@ -12,7 +12,17 @@ const createProps = (...args) => {
           callback: args[0],
           description: args[1]
         };
-  const schema = z.object(callback(z)).describe(description || '');
+  const propTypes = callback(z);
+  const { props, required } = Array.isArray(propTypes)
+    ? {
+        props: propTypes[0],
+        required: propTypes[1]
+      }
+    : { props: propTypes, required: void 0 };
+  const schema = z
+    .object(props)
+    .required(required)
+    .describe(description || '');
   const output = props => {
     return schema.passthrough().parse(props);
   };
