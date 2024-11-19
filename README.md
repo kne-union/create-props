@@ -61,7 +61,7 @@ const { createFunction } = _CreateProps;
 
 const argTypes = createFunction((z) => {
   return {
-    args: [z.string().default('name'), z.number().default(10)], returns: z.void()
+    args: [z.string(), z.number()], returns: z.void()
   };
 }, '示例方法');
 
