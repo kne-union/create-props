@@ -59,16 +59,13 @@ render(<BaseExample name="linzp" description={void 0} />);
 ```jsx
 const { createFunction } = _CreateProps;
 
-const argTypes = createFunction((z) => {
+const doSomething = createFunction((z) => {
   return {
     args: [z.string(), z.number()], returns: z.void()
   };
-}, '示例方法');
-
-const doSomething = (...args) => {
-  const [arg1, arg2, arg3] = argTypes(...args);
+}, '示例方法')((arg1, arg2, arg3) => {
   console.log(arg1, arg2, arg3);
-};
+});
 
 const BaseExample = () => {
   return <div onClick={() => {

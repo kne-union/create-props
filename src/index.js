@@ -51,8 +51,8 @@ export const createFunction = (...args) => {
     .returns(returns)
     .describe(description || '');
 
-  const output = (...targetArgs) => {
-    return z.tuple(functionArgs).rest(z.unknown()).parse(targetArgs);
+  const output = targetFunction => {
+    return schema.parse(targetFunction);
   };
 
   output.identifier = name;
