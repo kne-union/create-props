@@ -12,6 +12,18 @@
           "importStatement": "import * as _CreateProps from \"@kne/create-props\""
         }
       ]
+    },
+    {
+      "title": "这里填写示例标题",
+      "description": "这里填写示例说明",
+      "code": "./function-args.js",
+      "scope": [
+        {
+          "name": "_CreateProps",
+          "packageName": "@kne/current-lib_create-props",
+          "importStatement": "import * as _CreateProps from \"@kne/create-props\""
+        }
+      ]
     }
   ]
 }

@@ -14,10 +14,64 @@ const createProps = (...args) => {
         };
   const schema = z.object(callback(z)).describe(description || '');
   const output = props => {
-    return schema.parse(props);
+    return schema.passthrough().parse(props);
   };
   output.identifier = name;
   output.schema = schema;
+  return output;
+};
+
+export const createFunction = (...args) => {
+  const { name, callback, description } =
+    typeof args[0] === 'string'
+      ? {
+          name: args[0],
+          callback: args[1],
+          description: args[2]
+        }
+      : {
+          callback: args[0],
+          description: args[1]
+        };
+  const { args: functionArgs, returns } = callback(z);
+
+  const schema = z
+    .function()
+    .args(...functionArgs)
+    .returns(returns)
+    .describe(description || '');
+
+  const output = (...targetArgs) => {
+    return z.tuple(functionArgs).rest(z.unknown()).parse(targetArgs);
+  };
+
+  output.identifier = name;
+  output.schema = schema;
+
+  return output;
+};
+
+export const createConst = (...args) => {
+  const { name, callback, description } =
+    typeof args[0] === 'string'
+      ? {
+          name: args[0],
+          callback: args[1],
+          description: args[2]
+        }
+      : {
+          callback: args[0],
+          description: args[1]
+        };
+  const schema = callback(z).describe(description || '');
+
+  const output = target => {
+    return schema.passthrough().parse(target);
+  };
+
+  output.identifier = name;
+  output.schema = schema;
+
   return output;
 };
 
