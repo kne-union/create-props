@@ -52,6 +52,36 @@ render(<BaseExample name="linzp" description={void 0} />);
 
 ```
 
+- 这里填写示例标题
+- 这里填写示例说明
+- _CreateProps(@kne/current-lib_create-props)[import * as _CreateProps from "@kne/create-props"]
+
+```jsx
+const { createFunction } = _CreateProps;
+
+const argTypes = createFunction((z) => {
+  return {
+    args: [z.string().default('name'), z.number().default(10)], returns: z.void()
+  };
+}, '示例方法');
+
+const doSomething = (...args) => {
+  const [arg1, arg2, arg3] = argTypes(...args);
+  console.log(arg1, arg2, arg3);
+};
+
+const BaseExample = () => {
+  return <div onClick={() => {
+    doSomething('xxxx', 10, 20);
+  }}>
+    点击
+  </div>;
+};
+
+render(<BaseExample name="linzp" description={void 0} />);
+
+```
+
 
 ### API
 
