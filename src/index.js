@@ -45,14 +45,11 @@ export const createFunction = (...args) => {
         };
   const { args: functionArgs, returns } = callback(z);
 
-  const schema = z
-    .function()
-    .args(...functionArgs)
-    .returns(returns)
-    .describe(description || '');
-
+  const schema = z.function().args(...functionArgs);
+  returns ? schema.returns(returns) : null;
+  schema.describe(description || '');
   const output = targetFunction => {
-    return schema.parse(targetFunction);
+    return schema.passthrough().parse(targetFunction);
   };
 
   output.identifier = name;
