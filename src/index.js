@@ -49,7 +49,7 @@ export const createFunction = (...args) => {
   returns ? schema.returns(returns) : null;
   schema.describe(description || '');
   const output = targetFunction => {
-    return schema.passthrough().parse(targetFunction);
+    return schema.parse(targetFunction);
   };
 
   output.identifier = name;
